@@ -13,11 +13,11 @@ FROM neurodebian:stretch
 # The uid and gid will be set to 901 to avoid conflicts with offical users on the docker host.
 
 RUN groupadd -r martin -g 901 && \
-    adduser --system --uid 901 --gid 901 --ingroup martin --home /home/martin -s /sbin/nologin --gecos "martin user" martin && \
-    chmod 755 /home/martin/neuro_tut # set to working directory
+    adduser --system --uid 901 --gid 901 --home /home/martin -shell /sbin/nologin --gecos "martin user" martin
+#    chmod 755 /home/martin/neuro_tut # set to working directory # -> line20 produce non-find - errors ....maybe need fixing or early volume-mounting?
 
 # Define working directory
-WORKDIR /home/martin/neuro_tut
+#WORKDIR /home/martin/neuro_tut
 
 
 ARG DEBIAN_FRONTEND="noninteractive"
