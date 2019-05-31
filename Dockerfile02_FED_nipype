@@ -7,6 +7,7 @@
 # 
 #     https://github.com/kaczmarj/neurodocker
 
+FROM neurodebian:stretch
 
 # Create the 'martin' user and group used to launch processes
 # The uid and gid will be set to 901 to avoid conflicts with offical users on the docker host.
@@ -18,8 +19,6 @@ RUN groupadd -r martin -g 901 && \
 # Define working directory
 WORKDIR /home/martin/neuro_tut
 
-
-FROM neurodebian:stretch
 
 ARG DEBIAN_FRONTEND="noninteractive"
 
