@@ -12,13 +12,13 @@ FROM neurodebian:stretch
 # Create the 'martin' user and group used to launch processes
 # The uid and gid will be set to 901 to avoid conflicts with offical users on the docker host.
 
-RUN groupadd -r martin -g 901 && \
-    adduser --system --uid 901 --gid 901 --home /home/martin -shell /sbin/nologin --gecos "martin user" martin
-#    chmod 755 /home/martin/neuro_tut # set to working directory # -> line20 produce non-find - errors ....maybe need fixing or early volume-mounting?
+#RUN groupadd -r martin -g 901 && \
+#    adduser --system --uid 901 --gid 901 --home /home/martin -shell /sbin/nologin --gecos "martin user" martin
+#    chmod 755 /home/martin/neuro_tut # set to working directory   # -> line20 produce non-find - errors ....maybe need fixing or early volume-mounting?
 
 # Define working directory
 #WORKDIR /home/martin/neuro_tut
-
+### -> line 235 ff gives necessary commands!
 
 ARG DEBIAN_FRONTEND="noninteractive"
 
@@ -230,6 +230,41 @@ RUN export PATH="/opt/miniconda-latest/bin:$PATH" \
              'nbval'" \
     && rm -rf ~/.cache/pip/* \
     && sync
+    && sed -i '$isource activate neuro' $ND_ENTRYPOINT
+
+ENV LD_LIBRARY_PATH="/opt/miniconda-latest/envs/neuro:/usr/lib/fsl/5.0.11"
+
+RUN bash -c 'source activate neuro && jupyter nbextension enable exercise2/main && jupyter nbextension enable spellchecker/main'
+
+USER root
+
+#RUN mkdir /data && chmod 777 /data && chmod a+s /data  #I mount this volume
+
+#RUN mkdir /output && chmod 777 /output && chmod a+s /output  #I mount this volume
+
+USER martin
+
+#RUN printf "[user]\n\tname = miykael\n\temail = michaelnotter@hotmail.com\n" > ~/.gitconfig  #don't think I'll need this for now
+
+#RUN bash -c 'source activate neuro && cd /data && datalad install -r ///workshops/nih-2017/ds000114 && cd ds000114 && datalad update -r && datalad get -r sub-01/ses-test/anat sub-01/ses-test/func/*fingerfootlips*'  #already in /data
+
+#RUN curl -L https://files.osf.io/v1/resources/fvuh8/providers/osfstorage/580705089ad5a101f17944a9 -o /data/ds000114/derivatives/fmriprep/mni_icbm152_nlin_asym_09c.tar.gz && tar xf /data/ds000114/derivative#s/fmriprep/mni_icbm152_nlin_asym_09c.tar.gz -C /data/ds000114/derivatives/fmriprep/. && rm /data/ds000114/derivatives/fmriprep/mni_icbm152_nlin_asym_09c.tar.gz && find /data/ds000114/derivatives/fmriprep/m#ni_icbm152_nlin_asym_09c -type f -not -name ?mm_T1.nii.gz -not -name ?mm_brainmask.nii.gz -not -name ?mm_tpm*.nii.gz -delete   #a tool to transfer data from or to a server ....have the data already
+
+COPY [".", "/home/martin/neuro_tut/nipype"]
+
+USER root
+
+RUN chown -R martin /home/martin/neuro_tut/nipype
+
+RUN rm -rf /opt/conda/pkgs/*
+
+USER martin
+
+RUN mkdir -p ~/.jupyter && echo c.NotebookApp.ip = \"0.0.0.0\" > ~/.jupyter/jupyter_notebook_config.py
+
+WORKDIR /home/martin/neuro_tut/nipype
+
+CMD ["jupyter-notebook"]
 
 RUN echo '{ \
     \n  "pkg_manager": "apt", \
