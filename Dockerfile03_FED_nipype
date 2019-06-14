@@ -175,7 +175,7 @@ RUN apt-get update -qq \
            git-annex-remote-rclone \
            netbase \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV CONDA_DIR="/opt/miniconda-latest" \
     PATH="/opt/miniconda-latest/bin:$PATH"
@@ -231,17 +231,17 @@ RUN bash -c 'source activate neuro && jupyter nbextension enable exercise2/main 
 
 USER root
 
-# RUN mkdir /data && chmod 777 /data && chmod a+s /data  #I mount this volume
+RUN mkdir /data && chmod 777 /data && chmod a+s /data  #I mount this volume
 
-# RUN mkdir /output && chmod 777 /output && chmod a+s /output  #I mount this volume
+RUN mkdir /output && chmod 777 /output && chmod a+s /output  #I mount this volume
 
 USER martin
 
-# RUN printf "[user]\n\tname = miykael\n\temail = michaelnotter@hotmail.com\n" > ~/.gitconfig  #don't think I'll need this for now
+# RUN printf "[user]\n\tname = martin\n\temail = 43468442+MartinHochheimer@users.noreply.github.com\n" > ~/.gitconfig  #will work on this later ...
 
-# RUN bash -c 'source activate neuro && cd /data && datalad install -r ///workshops/nih-2017/ds000114 && cd ds000114 && datalad update -r && datalad get -r sub-01/ses-test/anat sub-01/ses-test/func/*fingerfo#otlips*'  #already in /data
+# RUN bash -c 'source activate neuro && cd /data && datalad install -r ///workshops/nih-2017/ds000114 && cd ds000114 && datalad update -r && datalad get -r sub-01/ses-test/anat sub-01/ses-test/func/*fingerfootlips*'  #already in /data
 
-# RUN curl -L https://files.osf.io/v1/resources/fvuh8/providers/osfstorage/580705089ad5a101f17944a9 -o /data/ds000114/derivatives/fmriprep/mni_icbm152_nlin_asym_09c.tar.gz && tar xf /data/ds000114/derivative#s/fmriprep/mni_icbm152_nlin_asym_09c.tar.gz -C /data/ds000114/derivatives/fmriprep/. && rm /data/ds000114/derivatives/fmriprep/mni_icbm152_nlin_asym_09c.tar.gz && find /data/ds000114/derivatives/fmriprep/m#ni_icbm152_nlin_asym_09c -type f -not -name ?mm_T1.nii.gz -not -name ?mm_brainmask.nii.gz -not -name ?mm_tpm*.nii.gz -delete   #a tool to transfer data from or to a server ....have the data already
+# RUN curl -L https://files.osf.io/v1/resources/fvuh8/providers/osfstorage/580705089ad5a101f17944a9 -o /data/ds000114/derivatives/fmriprep/mni_icbm152_nlin_asym_09c.tar.gz && tar xf /data/ds000114/derivatives/fmriprep/mni_icbm152_nlin_asym_09c.tar.gz -C /data/ds000114/derivatives/fmriprep/. && rm /data/ds000114/derivatives/fmriprep/mni_icbm152_nlin_asym_09c.tar.gz && find /data/ds000114/derivatives/fmriprep/mni_icbm152_nlin_asym_09c -type f -not -name ?mm_T1.nii.gz -not -name ?mm_brainmask.nii.gz -not -name ?mm_tpm*.nii.gz -delete   #a tool to transfer data from or to a server ....have the data already
 
 COPY [".", "/home/martin/neuro_tut/nipype"]
 
@@ -255,7 +255,7 @@ USER martin
 
 RUN mkdir -p ~/.jupyter && echo c.NotebookApp.ip = \"0.0.0.0\" > ~/.jupyter/jupyter_notebook_config.py
 
-WORKDIR /home/martin/neuro_tut
+WORKDIR /home/martin/neuro_tut/nipype
 
 CMD ["jupyter-notebook"]
 
