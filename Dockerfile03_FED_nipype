@@ -159,7 +159,6 @@ RUN apt-get update -qq \
            dcm2niix \
            python-pydicom \
            python-mvpa2 \
-           python-mne \
            python-statsmodels \
            convert3d \
            gcc \
@@ -168,7 +167,6 @@ RUN apt-get update -qq \
            tree \
            git-annex-standalone \
            emacs-nox \
-           nano \
            less \
            ncdu \
            tig \
@@ -195,8 +193,6 @@ RUN export PATH="/opt/miniconda-latest/bin:$PATH" \
            'python=3.7' \
            'traits' \
            'pytest' \
-	   'spyder' \
-	   'spyder-kernels' \
            'jupyter' \
            'jupyterlab' \
            'jupyter_contrib_nbextensions' \
@@ -227,7 +223,7 @@ RUN useradd --no-user-group --create-home --shell /bin/bash martin
 
 USER martin
 
-RUN bash -c 'source activate neuro && jupyter nbextension enable exercise2/main && jupyter nbextension enable spellchecker/main'
+RUN bash -c 'source activate neuro && jupyter nbextension enable exercise2/main && jupyter nbextension enable spellchecker/main && jupyter nbextension enable codefolding/main && jupyter nbextension enable execution_dependencies/execution_dependencies && jupyter nbextension enable help_panel/help_panel && jupyter nbextension enable hinterland/hinterland && jupyter nbextension enable scroll_down/main && jupyter nbextension enable autosavetime/main && jupyter nbextension enable codefolding/edit && jupyter nbextension enable runtools/main && jupyter nbextension enable select_keymap/main && jupyter nbextension enable toc2/main'
 
 USER root
 
@@ -253,7 +249,7 @@ RUN rm -rf /opt/conda/pkgs/*
 
 USER martin
 
-RUN mkdir -p ~/.jupyter && echo c.NotebookApp.ip = \"0.0.0.0\" > ~/.jupyter/jupyter_notebook_config.py
+RUN mkdir -p ~/.jupyter && echo c.NotebookApp.ip = \"0.0.0.0\" > ~/.jupyter/jupyter_notebook_config.py && echo c.NotebookApp.custom_display_url = 'http://localhost:8888' >> ~/.jupyter/jupyter_notebook_config.py
 
 WORKDIR /home/martin/neuro_tut/nipype
 
