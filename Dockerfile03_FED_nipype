@@ -77,6 +77,7 @@ RUN export TMPDIR="$(mktemp -d)" \
     && sed -i '$iexport SPMMCRCMD=\"/opt/spm12-r7219/run_spm12.sh /opt/matlabmcr-2010a/v713 script\"' $ND_ENTRYPOINT
 
 ENV FSLDIR="/opt/fsl-5.0.11" \
+    PATH="/opt/fsl-5.0.11/bin:$PATH" \
     LD_LIBRARY_PATH="/opt/miniconda-latest/envs/neuro:/usr/lib/fsl/5.0.11"
 RUN apt-get update -qq \
     && apt-get install -y -q --no-install-recommends \
