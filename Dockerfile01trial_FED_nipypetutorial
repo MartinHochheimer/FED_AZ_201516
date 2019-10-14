@@ -173,7 +173,7 @@ RUN apt-get update -qq \
            ncdu \
            tig \
            git-annex-remote-rclone \
-           octave \
+#           octave \
            netbase \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
