@@ -40,7 +40,7 @@ RUN export ND_ENTRYPOINT="/neurodocker/startup.sh" \
 
 ENTRYPOINT ["/neurodocker/startup.sh"]
 
-RUN apt-get update -qq \
+RUN apt-get update -q \
     && apt-get install -y -q --no-install-recommends \
            convert3d \
            ants \
@@ -50,9 +50,8 @@ RUN apt-get update -qq \
            graphviz \
            tree \
            git-annex-standalone \
-           vim \
-           emacs-nox \
-           nano \
+           emacs25-nox \
+	   emacs-goodies-el \
            less \
            ncdu \
            tig \

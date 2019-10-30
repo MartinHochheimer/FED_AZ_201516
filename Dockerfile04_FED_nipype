@@ -166,7 +166,8 @@ RUN apt-get update -qq \
            graphviz \
            tree \
            git-annex-standalone \
-           emacs-nox \
+           emacs25-nox \
+	   emacs-goodies-el \
            less \
            ncdu \
            tig \
