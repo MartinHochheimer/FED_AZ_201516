@@ -1,5 +1,6 @@
-# Bash Family Shell Dictionary for file organisation
+# Bash Family Shell Dictionary for data organisation and manipulation | FED project
 
+# count files in dir, using studyname and filenames (conceived for counting raw MRI data before dicom import)
 subdir-filecounter()
 {
     # give dir, subdir and sequence-nametag for files to count
@@ -16,4 +17,5 @@ subdir-filecounter()
     done
     
 }
+
 
