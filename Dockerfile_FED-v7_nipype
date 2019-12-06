@@ -148,6 +148,7 @@ RUN export PATH="/opt/miniconda-latest/bin:$PATH" \
              datalad[full] \
              nipy \
              nibabel \
+	     niflow-nipype1-workflows \ # install this module to continue using embedded fsl nipype workflows (miykale's tutorial won't work otherwise)
 	     itk \
 	     PsychoPy \
 	     pydicom \
