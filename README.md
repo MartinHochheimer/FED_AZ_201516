@@ -12,3 +12,5 @@
 
 # Notes on processing:
 # 1. defacing over skull stripping! More robust and less chance of loss-of-brain-tissue
+
+# FED022 and FED046 do have an early_scan directory.
