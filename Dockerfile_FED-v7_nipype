@@ -47,6 +47,7 @@ RUN apt-get update -qq \
 	   ants \
 	   fsl-complete \
 	   afni \
+           dcm2niix \
 	   gcc \
            g++ \
            graphviz \
