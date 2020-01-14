@@ -9,3 +9,4 @@ nipype_tutorial/
 nipype_tut/
 VBM/
 fMRI/
+*.xls*
