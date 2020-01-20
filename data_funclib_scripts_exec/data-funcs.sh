@@ -40,3 +40,20 @@ link-MRI-files()
 	echo "softlinked ${dir} to ${MYDIR}"
     done
 }
+
+
+insert-subjectID()
+{
+    # set up dir for find command
+    DIR=$1
+    NAME=$2
+    REPSTR=$3
+    
+    FILELIST=$(find $DIR -maxdepth 2 -type f -name $NAME)
+
+    for i in $FILELIST; do
+	rename -e "s/$REPSTR//"
+    done
+
+}
+    
