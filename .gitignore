@@ -9,4 +9,10 @@ nipype_tutorial/
 nipype_tut/
 VBM/
 fMRI/
-*.xls*
+FED_Assign2Groups.sh
+FED_GroupAssignments.md
+FED_TemplateAssignments.md
+get-FEDXXXNIFTIs.sh
+repl-fileN-FEDXXX.sh
+*.xls
+*.xlsx
