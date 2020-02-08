@@ -33,11 +33,16 @@ link-MRI-files()
     PATHLIST=${DIR}/${SUBDIR}*/${SEQUENCE}*
 
     for dir in $PATHLIST; do
+	echo $dir
 	TREECUT=${dir#${DIR}} # use the value of dir except the value of DIR
 	MYDIR=${TARGETDIR}${TREECUT}
-	mkdir -p $MYDIR && echo $MYDIR # be aware of current directory, as a wrong one might cause errors in the dirs that are made
-        ln -sf ${dir}/* $MYDIR
-	echo "softlinked ${dir} to ${MYDIR}"
+	if [ -d "$MYDIR" ]; then
+	    ln -sf ${dir}/* $MYDIR
+	else
+	    mkdir -p $MYDIR && echo $MYDIR # be aware of current directory, as a wrong one might cause errors in the dirs that are made
+            ln -sf ${dir}/* $MYDIR
+	    echo "softlinked ${dir} to ${MYDIR}"
+	fi
     done
 }
 
