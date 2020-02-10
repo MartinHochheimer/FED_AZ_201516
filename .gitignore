@@ -16,4 +16,4 @@ get-FEDXXXNIFTIs.sh
 repl-fileN-FEDXXX.sh
 *.xls
 *.xlsx
-*~
+*.txt
