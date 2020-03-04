@@ -17,3 +17,5 @@ repl-fileN-FEDXXX.sh
 *.xls
 *.xlsx
 *.txt
+*.m
+*.mat
