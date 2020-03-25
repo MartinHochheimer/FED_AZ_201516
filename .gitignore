@@ -19,3 +19,4 @@ repl-fileN-FEDXXX.sh
 *.txt
 *.m
 *.mat
+*checkpoint.sh
