@@ -60,15 +60,15 @@ replace-subjectID()
     FILELIST=$(find ${DIR} -maxdepth 2 -name ${NAME}*)
 
     for i in $FILELIST; do
-    rename -n "s/$DELSTR/$REPSTR/"
+    rename -n -e "s/$DELSTR/$REPSTR/" $i
     done
     
-    echo "Do you wish to rename the selected files as shown above?"
+    echo "Do you wish to rename the selected files as shown above? (type the number of the answer to be selected)"
     select yn in "Yes" "No"
     do
     case $yn in
         Yes) for i in $FILELIST; do
-        rename "s/$DELSTR/$REPSTR/"
+        rename -e "s/$DELSTR/$REPSTR/" $i
         done; echo "Subject IDs have been replaced."; 
         exit;;
             
