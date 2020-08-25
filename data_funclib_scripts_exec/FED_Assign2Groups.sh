@@ -53,7 +53,7 @@ for k in $FILELIST; do
     k2=${k#*T1*}
     # limit loop by testing for GroupAssignment
     if [[ $k2 != *"_CONt_"* && $k2 != *"_DEPt_"* && $k2 != *"_CON_"* ]]; then
-	echo "Assigning group to files not contained in template: ${k1}DEP_T1${k2} ... "
+	echo "Assigning group to files not contained in template: ${k1}CON_T1${k2} ... "
 	mv ${k} ${k1}CON_T1${k2}
     fi
 done

@@ -15,7 +15,7 @@ subdir-filecounter()
 	FILENUMS=`ls --almost-all --ignore-backups $files | wc -l` # bash does not seem to recognize my aliases in own functions ... maybe look into dot sourcing in my bash aliases or some more elegant way ...
 	echo "$FILENUMS files."
     done
-    
+
 }
 
 
@@ -25,11 +25,12 @@ link-MRI-files()
 
 
     # give dir, subdir and sequence-nametag for files to count
+    # targetdir to specify where it should be linked to
     DIR=`realpath $1` # use "realpath" this to get full path from root down to analysis directory
     SUBDIR=$2
     SEQUENCE=$3
     TARGETDIR=`realpath $4` # use "realpath" to get correct value of MYDIR downstream
-    
+
     PATHLIST=${DIR}/${SUBDIR}*/${SEQUENCE}*
 
     for dir in $PATHLIST; do
@@ -38,27 +39,41 @@ link-MRI-files()
 	MYDIR=${TARGETDIR}${TREECUT}
 	if [ -d "$MYDIR" ]; then
 	    ln -sf ${dir}/* $MYDIR
+            echo "softlinked ${dir} to existing directory: ${MYDIR}."
 	else
 	    mkdir -p $MYDIR && echo $MYDIR # be aware of current directory, as a wrong one might cause errors in the dirs that are made
             ln -sf ${dir}/* $MYDIR
-	    echo "softlinked ${dir} to ${MYDIR}"
+	    echo "softlinked ${dir} to new directory: ${MYDIR}."
 	fi
     done
 }
 
 
-insert-subjectID()
+replace-subjectID()
 {
     # set up dir for find command
     DIR=$1
     NAME=$2
-    REPSTR=$3
-    
-    FILELIST=$(find $DIR -maxdepth 2 -type f -name $NAME)
+    DELSTR=$3
+    REPSTR=$4
+
+    FILELIST=$(find ${DIR} -maxdepth 2 -name ${NAME}*)
 
     for i in $FILELIST; do
-	rename -e "s/$REPSTR//"
+    rename -n "s/$DELSTR/$REPSTR/"
     done
-
-}
     
+    echo "Do you wish to rename the selected files as shown above?"
+    select yn in "Yes" "No"
+    do
+    case $yn in
+        Yes) for i in $FILELIST; do
+        rename "s/$DELSTR/$REPSTR/"
+        done; echo "Subject IDs have been replaced."; 
+        exit;;
+            
+        No) echo "Replacing Subject IDs has been aborted at user's request.";
+        exit;;
+    esac
+    done
+}
