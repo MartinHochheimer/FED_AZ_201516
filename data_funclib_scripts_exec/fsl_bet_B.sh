@@ -1,9 +1,10 @@
 #!/bin/bash
-
-EXPANSION=".nii.gz"
-FILELIST=$(ls FED*${EXPANSION})
-INPUTSTR="_betBf04_struc_brain"
-TARGET="/struc/"
+fsl_bet_B()
+{
+    EXPANSION=$2
+    FILELIST=$(ls $1*${EXPANSION})
+    INPUTSTR="_betBf04_struc_brain"
+    TARGET="/struc/"
 
 # make dir for bet output (will throw an error, if the folder already exists)
 mkdir ${PWD}${TARGET}
