@@ -18,6 +18,23 @@ subdir-filecounter()
 
 }
 
+# count all volumes in your fMRI files using studyname and filenames (conceived for QC of fMRI task data)
+subdir-volcounter()
+{
+    # give dir, subdir and sequence-nametag for files to count
+   DIR=$1
+   SUBDIR=$2
+   FILE=$3
+
+    PATHLIST=${DIR}/${SUBDIR}*/${FILE}*
+
+    for file in $PATHLIST; do
+	echo $file
+	FILENUMS=`fslnvols ${file}`
+	echo "$FILENUMS volumes in this NIFTI."
+    done
+
+}
 
 
 link-MRI-files()
@@ -62,16 +79,16 @@ replace-subjectID()
     for i in $FILELIST; do
     rename -n -e "s/$DELSTR/$REPSTR/" $i
     done
-    
+
     echo "Do you wish to rename the selected files as shown above? (type the number of the answer to be selected)"
     select yn in "Yes" "No"
     do
     case $yn in
         Yes) for i in $FILELIST; do
         rename -e "s/$DELSTR/$REPSTR/" $i
-        done; echo "Subject IDs have been replaced."; 
+        done; echo "Subject IDs have been replaced.";
         exit;;
-            
+
         No) echo "Replacing Subject IDs has been aborted at user's request.";
         exit;;
     esac
