@@ -16,3 +16,4 @@ FED_GroupAssignments.md
 *.m
 *.mat
 *checkpoint.sh
+preprocessing_background
