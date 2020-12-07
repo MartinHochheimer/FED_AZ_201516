@@ -10,6 +10,8 @@ nipype_tut/
 VBM/
 fMRI/
 FED_GroupAssignments.md
+*.docx
+*.zip
 *.xls
 *.xlsx
 *.txt

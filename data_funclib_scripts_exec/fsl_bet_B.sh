@@ -3,7 +3,7 @@ fsl_bet_B()
 {
     EXPANSION=$2
     FILELIST=$(ls $1*${EXPANSION})
-    INPUTSTR="_betBf04_struc_brain"
+    INPUTSTR="_betBf35_struc_brain"
     TARGET="/struc/"
 
 # make dir for bet output (will throw an error, if the folder already exists)
@@ -19,7 +19,7 @@ for i in $FILELIST; do
     else
 	echo " running bet on  ${OUTFILE}${EXPANSION} ..."
 	# change bet settings here
-	bet $i .${TARGET}${OUTFILE}${INPUTSTR}${EXPANSION} -B -f 0.4 -o
+	bet $i .${TARGET}${OUTFILE}${INPUTSTR}${EXPANSION} -B -f 0.35 -o
     fi
     IMAGELIST="$IMAGELIST $i .${TARGET}${OUTFILE}${INPUTSTR}${EXPANSION}"
 done; echo "all files have been skullstripped ... hopefully correctly ..."
@@ -29,7 +29,7 @@ cd .${TARGET}
 
 echo "trimming directory ${PWD} ..."
 
-`rename 's/betBf04_struc_brain_overlay.nii.gz/betBf04_overlay.nii.gz/' *.gz`
+`rename 's/betBf35_struc_brain_overlay.nii.gz/betBf35_overlay.nii.gz/' *.gz`
 rm -f *"${INPUTSTR}"_mask*
 
 echo "${PWD} directory trimmed."
