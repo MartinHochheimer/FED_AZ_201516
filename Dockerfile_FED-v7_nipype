@@ -54,8 +54,8 @@ RUN apt-get update -qq \
            tree \
            rename \
            git-annex-standalone \
-          # emacs25-nox \
-	  # emacs-goodies-el \
+           emacs-nox \
+	   emacs-goodies-el \
            less \
            ncdu \
            tig \
