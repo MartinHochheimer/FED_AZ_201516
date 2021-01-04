@@ -9,6 +9,7 @@ nipype_tutorial/
 nipype_tut/
 VBM/
 fMRI/
+preprocessing_background
 FED_GroupAssignments.md
 *.docx
 *.zip
@@ -18,4 +19,3 @@ FED_GroupAssignments.md
 *.m
 *.mat
 *checkpoint.sh
-preprocessing_background
