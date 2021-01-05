@@ -183,13 +183,15 @@ RUN rm -rf /opt/conda/pkgs/*
 USER martin
 
 RUN mkdir -p ~/.jupyter && echo c.NotebookApp.ip = \"0.0.0.0\" > ~/.jupyter/jupyter_notebook_config.py \
-	&& echo c.NotebookApp.custom_display_url = 'http://localhost:8888' >> ~/.jupyter/jupyter_notebook_config.py
+        && echo c.NotebookApp.custom_display_url = 'http://localhost:8888' >> ~/.jupyter/jupyter_notebook_config.py
+
 
 # configure jupyterlab configuration
-RUN mkdir -p ~/.jupyter/lab/user-settings/@jupyterlab/{apputils-extension,shortcuts-extension} \
+RUN mkdir -p ~/.jupyter/lab/user-settings/@jupyterlab/apputils-extension && mkdir -p ~/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension \
 # write setting-files into created dirs
-        && sudo tee -a ~/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension/shortcuts.jupyterlab-settings > /dev/null << EOF \
-    // List of Keyboard Shortcuts \
+# tell docker explicitly to use bash as shell for the commands below
+        && tee -a ~/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension/shortcuts.jupyterlab-settings > /dev/null << EOF \
+    \/\/ List of Keyboard Shortcuts \
     {"shortcuts": [ \
         { \
             "command": "notebook:run-in-console", \
@@ -200,19 +202,19 @@ RUN mkdir -p ~/.jupyter/lab/user-settings/@jupyterlab/{apputils-extension,shortc
         }, \
     ] \
     } \
-EOF \
-        && sudo tee -a ~/.jupyter/lab/user-settings/@jupyterlab/apputils-extension/themes.jupyterlab-settings > /dev/null << EOF \
-{ \
-    // Theme \
-    // @jupyterlab/apputils-extension:themes \
-    // Theme manager settings. \
-    // ************************************* \
- \
-    // Selected Theme \
-    // Application-level visual styling theme \
-    "theme": "JupyterLab Dark" \
-} \
-EOF
+EOF #\
+#        && tee -a ~/.jupyter/lab/user-settings/@jupyterlab/apputils-extension/themes.jupyterlab-settings > /dev/null << EOF \
+#{ \
+#    // Theme \
+#    // @jupyterlab/apputils-extension:themes \
+#    // Theme manager settings. \
+#    // ************************************* \
+#\
+#    // Selected Theme \
+#    // Application-level visual styling theme \
+#    "theme": "JupyterLab Dark" \
+#} \
+#EOF
 
 
 WORKDIR /home/martin/FED
