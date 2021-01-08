@@ -19,3 +19,4 @@ FED_GroupAssignments.md
 *.m
 *.mat
 *checkpoint.sh
+*.sif
