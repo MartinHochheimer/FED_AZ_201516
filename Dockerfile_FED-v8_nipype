@@ -38,7 +38,7 @@ ENTRYPOINT ["/neurodocker/startup.sh"]
 
 
 RUN apt-get update -qq \
-    && apt-get install -y -q --no-install-recommends \
+        && apt-get install -y -q --no-install-recommends \
            convert3d \
 	   ants \
 	   fsl-complete \
@@ -119,6 +119,7 @@ RUN export PATH="/opt/miniconda-latest/bin:$PATH" \
     && rm -f "$conda_installer" \
     && conda update -yq -nbase conda \
     && conda config --system --prepend channels conda-forge \
+#    && conda config --system --append channels krinsman \
     && conda config --system --set auto_update_conda false \
     && conda config --system --set show_channel_urls true \
     && sync && conda clean --all && sync \
@@ -127,9 +128,14 @@ RUN export PATH="/opt/miniconda-latest/bin:$PATH" \
            'python=3.7' \
            'traits' \
            'pytest' \
+           'nodejs' \
            'jupyter' \
            'jupyterlab' \
-           'jupyter_contrib_nbextensions' \
+           'jupyterlab-lsp' \
+           'python-language-server' \
+#           'jupyterlab-variableinspector' \ # these break the jupyter lab setup at the moment
+#           'jupyterlab-toc' \
+#           'jupyter_contrib_nbextensions' \
            'pandas' \
            'matplotlib' \
            'scikit-learn' \
@@ -146,7 +152,6 @@ RUN export PATH="/opt/miniconda-latest/bin:$PATH" \
              datalad[full] \
              nipy \
              nibabel \
-# install the module below to continue using embedded fsl nipype workflows (miykael- tutorial wont work otherwise)
 	     niflow-nipype1-workflows \
              itk \
 	     PsychoPy \
@@ -154,12 +159,12 @@ RUN export PATH="/opt/miniconda-latest/bin:$PATH" \
 	     statsmodels \
              duecredit \
              nbval" \
+# install niflow-nipype1-workflows to continue using embedded fsl nipype workflows (miykael- tutorial wont work otherwise)
     && rm -rf ~/.cache/pip/* \
     && sync \
 	&& sed -i '$isource activate neuro' $ND_ENTRYPOINT
 
 ENV LD_LIBRARY_PATH="/opt/miniconda-latest/envs/neuro:/usr/lib/fsl/5.0"
-
 
 
 #RUN bash -c 'source activate neuro && jupyter nbextension enable exercise2/main && jupyter nbextension enable spellchecker/main && jupyter nbextension enable codefolding/main && jupyter nbextension enable execution_dependencies/execution_dependencies && jupyter nbextension enable help_panel/help_panel && jupyter nbextension enable hinterland/hinterland && jupyter nbextension enable scroll_down/main && jupyter nbextension enable autosavetime/main && jupyter nbextension enable codefolding/edit && jupyter nbextension enable runtools/main && jupyter nbextension enable select_keymap/main && jupyter nbextension enable toc2/main'
@@ -184,6 +189,13 @@ RUN mkdir -p ~/.jupyter && echo c.NotebookApp.ip = \"0.0.0.0\" > ~/.jupyter/jupy
 
 
 # jupyterlab configuration
+# Create configuration file for python language server protocol
+RUN mkdir -p ~/.config \
+        && echo [pycodestyle] >> ~/.config/pycodestyle \
+        && echo count = False >> ~/.config/pycodestyle \
+        && echo ignore = E251,E265,E302,E303,E401,E402,E703 >> ~/.config/pycodestyle \
+        && echo max-line-length = 160 >> ~/.config/pycodestyle \
+        && echo statistics = False >> ~/.config/pycodestyle
 #RUN mkdir -p ~/.jupyter/lab/user-settings/@jupyterlab/apputils-extension && mkdir -p ~/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension \
 # write setting-files into created dirs
 #        && tee -a ~/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension/shortcuts.jupyterlab-settings > /dev/null << EOF \
