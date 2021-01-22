@@ -195,7 +195,11 @@ RUN mkdir -p ~/.config \
         && echo count = False >> ~/.config/pycodestyle \
         && echo ignore = E251,E265,E302,E303,E401,E402,E703 >> ~/.config/pycodestyle \
         && echo max-line-length = 160 >> ~/.config/pycodestyle \
-        && echo statistics = False >> ~/.config/pycodestyle
+        && echo statistics = False >> ~/.config/pycodestyle \
+# symlink FSL and SPM data directories into the language server, so it can access them
+        && mkdir -p ~/FED/.lsp_symlink \
+        && ln -s /usr/share/fsl/5.0/data ~/FED/.lsp_symlink/fsl_data \
+        && ln -s /opt/spm12-r7219/spm12_mcr/spm12/tpm ~/FED/.lsp_symlink/spm_tpm
 #RUN mkdir -p ~/.jupyter/lab/user-settings/@jupyterlab/apputils-extension && mkdir -p ~/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension \
 # write setting-files into created dirs
 #        && tee -a ~/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension/shortcuts.jupyterlab-settings > /dev/null << EOF \
