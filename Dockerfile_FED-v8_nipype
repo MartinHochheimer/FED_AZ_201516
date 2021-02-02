@@ -129,6 +129,7 @@ RUN export PATH="/opt/miniconda-latest/bin:$PATH" \
            'traits' \
            'pytest' \
            'nodejs' \
+           'h5py' \
            'jupyter' \
            'jupyterlab' \
            'jupyterlab-lsp' \
