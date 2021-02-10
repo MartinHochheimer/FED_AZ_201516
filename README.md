@@ -7,8 +7,10 @@ Always use latest Dockerfile for built (number index)
 This work is roughly split into 6 jupyter notebooks, each with its own task:
 
 1. Dicom to Nifit file conversion
+   [jupyter notebook](fMRI_Dicom2Nifti.ipynb)
 
 2. Distortion correction with optional fieldmap creation (if the data needs it)
+   [jupyter notebook](fMRI_prestats_distcor.ipynb)
 
 3. Preprocessing of functional and anatomical data (FSL & SPM), using
    i.    brain extraction
@@ -19,22 +21,27 @@ This work is roughly split into 6 jupyter notebooks, each with its own task:
    vi.   masking of the new files and mask creation for 1st level stats
    vii.  double intensity normalisation
    viii. highpass filtering
+   [jupyter notebook](fMRI_prestats_preppipeline-struc&func.ipynb)
 
 4. 1st level modeling and statistics
+   [jupyter notebook](fMRI_1stlevel.ipynb)
 
 5. 2nd level modeling and statistics
+   [jupyter notebook](fMRI_2ndlevel.ipynb)
 
 6. creation of result figures and plots
+   [jupyter notebook](fMRI_plots_resultfigures.ipynb)
 
 Additionally, 2 further notebooks are used to create the datastructure for this
 analysis, a nested dictionary that extracts, collects and holds all relevant
 files and parameters.
 
 The first of them creates the "original" datastructure without any of the
-preprocessing parameters. It also imports the required modules for the entire
+preprocessing parameters. [jupyter notebook](fMRI_prestats_data-struct.ipynb)
+It also imports the required modules for the entire
 analysis! This might seem redundant at times, but is my modus operandi here.
 The second one checks for the completion of thosepreprocessing steps
-that generate additonal parameters to the structure and computes them.
+that generate additonal parameters to the structure and computes them. [jupyter notebook](fMRI_prestats_data-struct2-prepadds.ipynb)
 The preprocessing notebook is makred at the points where parameter estimation
 has been executed in the secondary data notebook.
 Files are not "outsourced" in this way, but added during the script
@@ -46,8 +53,8 @@ initial datastructure which takes a lot less time to run that its complimentary.
 The relevant computational environment is specified in the relevant
 Dockerfile_FED-v{latest_version}_nipype.
 
-Adittional data, configuration files or processing sripts can be mounted in to
-create a more complex command for the docker container execution:
+Aditional data, configuration files or processing sripts can be mounted in to
+create a more complex command (and also a richer environment) for the docker container execution:
 
 'docker run -it --rm -v /data_directory/:/docker_directory -v /config_directory:/docker_config_directory -p 8888:8888 --name name:tag:version jupyter lab --ip=0.0.0.0'
 
