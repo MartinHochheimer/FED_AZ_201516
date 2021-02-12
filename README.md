@@ -7,10 +7,10 @@ Always use latest Dockerfile for built (number index)
 This work is roughly split into 6 jupyter notebooks, each with its own task:
 
 1. Dicom to Nifit file conversion
-   [jupyter notebook](fMRI_Dicom2Nifti.ipynb)
+   [jupyter notebook](data_funclib_scripts_exec/fMRI_Dicom2Nifti.ipynb)
 
 2. Distortion correction with optional fieldmap creation (if the data needs it)
-   [jupyter notebook](fMRI_prestats_distcor.ipynb)
+   [jupyter notebook](data_funclib_scripts_exec/fMRI_prestats_distcor.ipynb)
 
 3. Preprocessing of functional and anatomical data (FSL & SPM), using
    i.    brain extraction
@@ -21,27 +21,27 @@ This work is roughly split into 6 jupyter notebooks, each with its own task:
    vi.   masking of the new files and mask creation for 1st level stats
    vii.  double intensity normalisation
    viii. highpass filtering
-   [jupyter notebook](fMRI_prestats_preppipeline-struc&func.ipynb)
+   [jupyter notebook](data_funclib_scripts_exec/fMRI_prestats_preppipeline-struc&func.ipynb)
 
 4. 1st level modeling and statistics
-   [jupyter notebook](fMRI_1stlevel.ipynb)
+   [jupyter notebook](data_funclib_scripts_exec/fMRI_1stlevel.ipynb)
 
 5. 2nd level modeling and statistics
-   [jupyter notebook](fMRI_2ndlevel.ipynb)
+   [jupyter notebook](data_funclib_scripts_exec/fMRI_2ndlevel.ipynb)
 
 6. creation of result figures and plots
-   [jupyter notebook](fMRI_plots_resultfigures.ipynb)
+   [jupyter notebook](data_funclib_scripts_exec/fMRI_plots_resultfigures.ipynb)
 
 Additionally, 2 further notebooks are used to create the datastructure for this
 analysis, a nested dictionary that extracts, collects and holds all relevant
 files and parameters.
 
 The first of them creates the "original" datastructure without any of the
-preprocessing parameters. [jupyter notebook](fMRI_prestats_data-struct.ipynb)
+preprocessing parameters. [jupyter notebook](data_funclib_scripts_exec/fMRI_prestats_data-struct.ipynb)
 It also imports the required modules for the entire
 analysis! This might seem redundant at times, but is my modus operandi here.
 The second one checks for the completion of thosepreprocessing steps
-that generate additonal parameters to the structure and computes them. [jupyter notebook](fMRI_prestats_data-struct2-prepadds.ipynb)
+that generate additonal parameters to the structure and computes them. [jupyter notebook](data_funclib_scripts_exec/fMRI_prestats_data-struct2-prepadds.ipynb)
 The preprocessing notebook is makred at the points where parameter estimation
 has been executed in the secondary data notebook.
 Files are not "outsourced" in this way, but added during the script
