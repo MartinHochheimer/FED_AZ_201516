@@ -8,28 +8,35 @@ FSF_FILES=$(find ./fMRI/ -maxdepth 4 -type f -regextype posix-egrep -regex ".*FE
 for file in $FSF_FILES; do
     # print file
     echo $file
+
     # split string by "/" and create replacement variables
     # need to escape forward slashes, sed will merely interpret them as escapes
     OUTPUT_DIRECTORY="$(cut -d'/' -f1-5 <<<$file --output-delimiter="\/")\/FEAT"
     HIGHRES_IMG="$(cut -d'/' -f1-3 <<<$file --output-delimiter="\/")\/T1_BETBf35.nii"
     FEAT_FILE="$(cut -d'/' -f1-3 <<<$file --output-delimiter="\/")\/"
-#    echo $OUTPUT_DIRECTORY
-#    echo $HIGHRES_IMG
-#    echo $FEAT_FILE
-    # replace lines in fsf file with desired input to FEAT analysis
-    sed -n -e "/outputdir/s/run0/$OUTPUT_DIRECTORY/"\  # insert correct output directory
-           -e "/temphp_yn/s/1/0/p"\  # no temporal highpass filtering - already did that
-           -e "/fmri(smooth)/s/0/5/p"\  # set smoothing kernel to 5mm
-           -e "/highres_dof/s/6/BBR/p"\  # set within subject registration to BBR
-           -e "/fmri(thresh)/s/3/0/p"\   # turn threshold value to 0 (median intensity normalised to 10000 and twice-assured)
-           -e "/fmri(analysis)/s/6/5/p"\ # switch to only performing stats and not post-stats
-           -e '/highres_files/s/""//' -e "/highres_files/s/$/$HIGHRES_IMG/" -e '/highres_files/s/.\//".\//' -e '/highres_files/s/ii/ii"/'\  # insert highres for plotting statistics
-           -e "/feat_files/s/\/fMRI.*ns\//$FEAT_FILE/"\  # inserting the correct feat analysis file and path
-           -e "s/\.\/fMRI/\/fMRI/g" $file  # take away the . to switch to absolute paths (see below)
+
+    # Next, replace lines in fsf file with desired input to FEAT analysis:
+    # input correct output directory
+    # no temporal highpass filtering - already did that
+    # set smoothing kernel to 5mm, but set smoothing to 0 in the next line - already did that
+    # set within subject registration to BBR
+    # turn threshold value to 0 (median intensity normalised to 10000 and twice-assured)
+    # switch to only performing stats and not post-stats
+    # insert highres for plotting statistics
+    # inserting the correct feat analysis file and path
+    # take away the . to switch to absolute paths (see below)
+    sed -in -e "/outputdir/s/run0/$OUTPUT_DIRECTORY/"\
+           -e "/temphp_yn/s/1/0/"\
+           -e "/fmri(smooth)/s/0/5/" -e "/.*fmri(smooth).*/a set fmri(smooth_yn) 0"\
+           -e "/highres_dof/s/6/BBR/"\
+           -e "/fmri(thresh)/s/3/0/"\
+           -e "/fmri(analysis)/s/6/5/"\
+           -e '/highres_files/s/""//' -e "/highres_files/s/$/$HIGHRES_IMG/" -e '/highres_files/s/.\//".\//' -e '/highres_files/s/ii/ii"/'\
+           -e "/feat_files/s/\/fMRI.*ns\//$FEAT_FILE/"\
+           -e "s/\.\/fMRI/\/fMRI/g" $file
 done
 
-
-# if needed, change relative to absolute paths
+# change relative to absolute paths
 for file in $FSF_FILES; do
-    sed -n -e 's/\/fMRI/\/media\/storage\/data\/FED-project_UoA_data\/fMRI/gp' $file
+    sed -in -e 's/\/fMRI/\/media\/storage\/data\/FED-project_UoA_data\/fMRI/g' $file
 done
