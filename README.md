@@ -13,15 +13,14 @@ This work is roughly split into 6 jupyter notebooks, each with its own task:
    [jupyter notebook](data_funclib_scripts_exec/fMRI_prestats_distcor.ipynb)
 
 3. Preprocessing of functional and anatomical data (using FSL & SPM) consisting of (in the following order):
-   i.    brain extraction
-   ii.   motion correction
-   iii.  robust intensity masking
-   iv.   smoothing (5mm Kernel, custom intensity and brightness thresholds)
-   v.    coregistration using Boundary Based Registration
-   vi.   masking of the new files and mask creation for 1st level stats
-   vii.  double intensity normalisation (to ensure the same median intensity
-   value across all participants)
-   viii. highpass filtering
+   i.    brain extraction (struct)
+   ii.   motion correction (func)
+   iii.  robust intensity thresholding (func)
+   iv.   smoothing (5mm Kernel, custom intensity and brightness thresholds) (func)
+   v.    coregistration using Boundary Based Registration (6DOF) (struct & func)
+   vi.   masking of the new files and mask creation for 1st level stats (struct & func)
+   vii.  double intensity normalisation (to ensure the same median intensity value across all participants) (func)
+   viii. highpass filtering (func)
    [jupyter notebook](data_funclib_scripts_exec/fMRI_prestats_preppipeline-struc&func.ipynb)
 
 4. 1st level modeling and statistics
