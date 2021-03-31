@@ -138,6 +138,7 @@ RUN export PATH="/opt/miniconda-latest/bin:$PATH" \
 #           'jupyterlab-toc' \
 #           'jupyter_contrib_nbextensions' \
            'pandas' \
+           'xlrd' \
            'matplotlib' \
            'scikit-learn' \
            'scikit-image' \
