@@ -2,7 +2,7 @@
 # Execute all of the following out of the FED directory!
 
 # collect all fsf files into a list
-FSF_FILES=$(find ./fMRI/ -maxdepth 4 -type f -regextype posix-egrep -regex ".*FED007.*run0.fsf")
+FSF_FILES=$(find ./fMRI/ -maxdepth 4 -type f -regextype posix-egrep -regex ".*FED0.*run0.fsf")
 
 # find the yet suboptimal parts of the fsf file and edit them as required
 for file in $FSF_FILES; do
