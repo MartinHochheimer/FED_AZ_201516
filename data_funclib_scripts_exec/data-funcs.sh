@@ -51,7 +51,7 @@ link-MRI-files()
     PATHLIST=${DIR}/${SUBDIR}*/${SEQUENCE}*
 
     for dir in $PATHLIST; do
-	echo $dir
+#	echo $dir
 	TREECUT=${dir#${DIR}} # use the value of dir except the value of DIR
 	MYDIR=${TARGETDIR}${TREECUT}
 	if [ -d "$MYDIR" ]; then
