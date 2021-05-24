@@ -1,9 +1,9 @@
 # FED_AZ_201516
 
 Source code material for my  Project and Master's theses in Translational
-Neuroscience and Psychology. \\
+Neuroscience and Psychology. \
 It utilises nipype and a docker image for easy distribution and access of the
-analysis scheme. \\
+analysis scheme. \
 -> Always use latest Dockerfile for built (number index)^^
 
 This work is roughly split into 6 jupyter notebooks, each with its own task:
