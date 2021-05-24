@@ -1,8 +1,10 @@
 # FED_AZ_201516
 
-Material for my Docker Project and Master's thesis
-Analyse data via nipype and use a docker image for easy distribution and access.
-Always use latest Dockerfile for built (number index)
+Source code material for my  Project and Master's theses in Translational
+Neuroscience and Psychology
+It utilises nipype and a docker image for easy distribution and access of the
+analysis scheme.
+-> Always use latest Dockerfile for built (number index)^^
 
 This work is roughly split into 6 jupyter notebooks, each with its own task:
 
