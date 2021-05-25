@@ -64,5 +64,5 @@ command line.
 
 
 LICENSE: \
-All the source code developed by me, is licensed under a GP license (version [3](https://www.gnu.org/licenses/gpl-3.0.html)). \
+All the source code developed by me, is licensed under a GP license ([version 3](https://www.gnu.org/licenses/gpl-3.0.html)). \
 Please view the project's "LICENSE" file to learn more.
