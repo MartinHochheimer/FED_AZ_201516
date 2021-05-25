@@ -14,13 +14,15 @@ This work is roughly split into 6 jupyter notebooks, each with its own task:
 2. Distortion correction with optional fieldmap creation (if the data needs it)
    [jupyter notebook](data_funclib_scripts_exec/fMRI_prestats_distcor.ipynb)
 
-3. Preprocessing of functional and anatomical data (using FSL & SPM) consisting of (in the following order):
-   i.    brain extraction (struct)
-   ii.   motion correction (func)
-   iii.  motion-based artefact correction using rapidart's ART (func)
-   iv.   brain extraction (func)
-   v.    coregistration using Boundary Based Registration (6DOF) (struct & func)
-   vi.   masked smoothing (different mm Kernel, custom intensity and brightness thresholds) (func)
+3. Preprocessing of functional and anatomical data (using FSL & SPM) consisting
+   of (in the following order): \
+   i.    brain extraction (struct) \
+   ii.   motion correction (func) \
+   iii.  motion-based artefact correction using rapidart's ART (func) \
+   iv.   brain extraction (func) \
+   v.    coregistration using Boundary Based Registration (6DOF) (struct & func) \
+   vi.   masked smoothing (different mm Kernel, custom intensity and brightness
+   thresholds) (func) \
    vii.  masking of the new files and mask creation for 1st level stats (struct & func)
    [jupyter notebook](data_funclib_scripts_exec/fMRI_prestats_preppipeline-struc&func.ipynb)
 
