@@ -62,5 +62,7 @@ create a more complex command (and also a richer environment) for the docker con
 In case of multiple additions, it is best to write an alias to simplify the
 command line.
 
-LICENCE
-All the source code developed by me, is licensed under a GP license (version 3). Please view the project's LICENCE file to learn more.
+
+LICENCE: \
+All the source code developed by me, is licensed under a GP license (version [3](https://www.gnu.org/licenses/gpl-3.0.html)). \
+Please view the project's LICENCE file to learn more.
