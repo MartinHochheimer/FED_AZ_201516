@@ -65,4 +65,4 @@ command line.
 
 LICENCE: \
 All the source code developed by me, is licensed under a GP license (version [3](https://www.gnu.org/licenses/gpl-3.0.html)). \
-Please view the project's LICENCE file to learn more.
+Please view the project's "LICENSE" file to learn more.
