@@ -23,7 +23,8 @@ This work is roughly split into 6 jupyter notebooks, each with its own task:
    v.    coregistration using Boundary Based Registration (6DOF) (struct & func) \
    vi.   masked smoothing (different mm Kernel, custom intensity and brightness
    thresholds) (func) \
-   vii.  masking of the new files and mask creation for 1st level stats (struct & func)
+   vii.  masking of the new files and mask creation for 1st level stats (struct
+   & func) \
    [jupyter notebook](data_funclib_scripts_exec/fMRI_prestats_preppipeline-struc&func.ipynb)
 
 4. 1st level modelling and statistics
