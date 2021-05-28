@@ -12,6 +12,7 @@ fMRI/
 data_funclib_scripts_exec/.virtual_documents/
 preprocessing_background
 FED_GroupAssignments.md
+*#
 *.docx
 *.zip
 *.xls
