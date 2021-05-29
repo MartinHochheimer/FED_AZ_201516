@@ -158,6 +158,7 @@ RUN export PATH="/opt/miniconda-latest/bin:$PATH" \
              nltools \
 	     pydicom \
 	     statsmodels \
+             pingouin \
              duecredit \
              nbval" \
 # install niflow-nipype1-workflows to continue using embedded fsl nipype workflows (miykael- tutorial wont work otherwise)
