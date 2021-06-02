@@ -6,15 +6,17 @@ It utilises nipype and a docker image for easy distribution and access of the
 analysis scheme. \
 -> Always use latest Dockerfile for built (number index)^^
 
-This work is roughly split into 6 jupyter notebooks, each with its own task:
+This work is roughly split into 7 jupyter notebooks, each with its own task:
+1. Behavioural (reaction time (RT)) data preparation and analysis
+   [jupyter notebook](data_funclib_scripts_exec/RT_data-analysis.ipynb)
 
-1. Dicom to Nifti file conversion
+2. Dicom to Nifti file conversion
    [jupyter notebook](data_funclib_scripts_exec/fMRI_Dicom2Nifti.ipynb)
 
-2. Distortion correction with optional fieldmap creation (if the data needs it)
+3. Distortion correction with optional fieldmap creation (if the data needs it)
    [jupyter notebook](data_funclib_scripts_exec/fMRI_prestats_distcor.ipynb)
 
-3. Preprocessing of functional and anatomical data (using FSL & SPM) consisting
+4. Preprocessing of functional and anatomical data (using FSL & SPM) consisting
    of (in the following order): \
    i.    brain extraction (struct) \
    ii.   motion correction (func) \
@@ -27,13 +29,13 @@ This work is roughly split into 6 jupyter notebooks, each with its own task:
    & func) \
    [jupyter notebook](data_funclib_scripts_exec/fMRI_prestats_preppipeline-struc&func.ipynb)
 
-4. 1st level modelling and statistics
+5. 1st level modelling and statistics
    [jupyter notebook](data_funclib_scripts_exec/fMRI_1stlevel.ipynb)
 
-5. 2nd level modelling and statistics
+6. 2nd level modelling and statistics
    [jupyter notebook](data_funclib_scripts_exec/fMRI_2ndlevel.ipynb)
 
-6. creation of result figures and plots
+7. creation of result figures and plots
    [jupyter notebook](data_funclib_scripts_exec/fMRI_plots_resultfigures.ipynb)
 
 Additionally, a further notebook is  used to create the datastructure for this
