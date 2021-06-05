@@ -133,7 +133,8 @@ RUN export PATH="/opt/miniconda-latest/bin:$PATH" \
            'jupyter' \
            'jupyterlab' \
            'jupyterlab-lsp' \
-           'python-language-server' \
+           'python-lsp-server' \
+           'r-languageserver' \
 #           'jupyterlab-variableinspector' \ # these break the jupyter lab setup at the moment
 #           'jupyterlab-toc' \
 #           'jupyter_contrib_nbextensions' \
@@ -145,6 +146,11 @@ RUN export PATH="/opt/miniconda-latest/bin:$PATH" \
            'seaborn' \
            'nbformat' \
            'nb_conda' \
+           'r-base' \
+           'r-essentials' \
+           'r-tidyverse' \
+           'r-ggpubr' \
+           'r-rstatix' \
     && sync && conda clean --all && sync \
     && bash -c "source activate neuro \
     && pip install --no-cache-dir  \
