@@ -146,10 +146,12 @@ RUN export PATH="/opt/miniconda-latest/bin:$PATH" \
            'seaborn' \
            'nbformat' \
            'nb_conda' \
+           'rpy2' \
            'r-base' \
            'r-essentials' \
            'r-tidyverse' \
            'r-ggpubr' \
+           'r-ggpmisc' \
            'r-rstatix' \
     && sync && conda clean --all && sync \
     && bash -c "source activate neuro \
