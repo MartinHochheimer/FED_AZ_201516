@@ -153,6 +153,7 @@ RUN export PATH="/opt/miniconda-latest/bin:$PATH" \
            'r-ggpubr' \
            'r-ggpmisc' \
            'r-rstatix' \
+           'r-car' \
     && sync && conda clean --all && sync \
     && bash -c "source activate neuro \
     && pip install --no-cache-dir  \
