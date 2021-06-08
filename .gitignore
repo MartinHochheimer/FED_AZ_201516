@@ -13,6 +13,8 @@ data_funclib_scripts_exec/.virtual_documents/
 preprocessing_background
 FED_GroupAssignments.md
 *#
+*.png
+*.jpeg
 *.docx
 *.zip
 *.xls

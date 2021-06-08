@@ -146,6 +146,7 @@ RUN export PATH="/opt/miniconda-latest/bin:$PATH" \
            'seaborn' \
            'nbformat' \
            'nb_conda' \
+#           R integration into conda environment starts here
            'rpy2' \
            'r-base' \
            'r-essentials' \
@@ -153,7 +154,8 @@ RUN export PATH="/opt/miniconda-latest/bin:$PATH" \
            'r-ggpubr' \
            'r-ggpmisc' \
            'r-rstatix' \
-           'r-car' \
+           'r-afex' \
+           'r-xtable' \
     && sync && conda clean --all && sync \
     && bash -c "source activate neuro \
     && pip install --no-cache-dir  \
