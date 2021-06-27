@@ -1,10 +1,14 @@
 # FED_AZ_201516
 
-Source code material for my  Project and Master's theses in Translational
-Neuroscience and Psychology. \
+Source code material for my  Master's thesis in Translational Neuroscience and Psychology. \
 It utilises nipype and a docker image for easy distribution and access of the
 analysis scheme. \
 -> Always use latest Dockerfile for built (number index)^^
+
+The thesis' integral components are behavioural data integrated with fMRI
+timeseries. The notebooks whose names include the term ``VBM'' are part of a
+previous project and kept solely for documentation and reference purposes.
+They may be ignored for the present. \\
 
 This work is roughly split into 7 jupyter notebooks, each with its own task:
 1. Behavioural (reaction time (RT)) data preparation and analysis
