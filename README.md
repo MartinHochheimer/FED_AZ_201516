@@ -3,7 +3,7 @@
 Source code material for my  Master's thesis in Translational Neuroscience and Psychology. \
 It utilises nipype and a docker image for easy distribution and access of the
 analysis scheme. \
--> Always use latest Dockerfile for built (number index)^^
+-> Always use latest Dockerfile for built (number index)
 
 The thesis' integral components are behavioural data integrated with fMRI
 timeseries. The notebooks whose names include the term ``VBM'' are part of a
@@ -47,7 +47,7 @@ analysis, a nested dictionary that extracts, collects and holds all relevant
 files and parameters.
 
 It first creates the "original" datastructure without any of the
-preprocessing parameters. [jupyter notebook](data_funclib_scripts_exec/fMRI_prestats_data-struct.ipynb)
+preprocessing parameters [jupyter notebook](data_funclib_scripts_exec/fMRI_prestats_data-struct.ipynb).
 It also imports the required modules for the entire
 analysis! This might seem redundant at times, but is my modus operandi here.
 Next, it checks for the completion of those preprocessing steps
