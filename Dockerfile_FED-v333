@@ -3,8 +3,9 @@
 # version 333
 ### this derivate version of my thesis' docker image does not use SPM,
 # as it is necessary to build the image from one single source image
-# to emulate the behaviour of the original setup
-# ... and it is just far too messy to use a MATLAB application^^ ###
+# to emulate the behaviour of the original setup, yet extend it massively
+# by adding ANTs, AFNI, R, and PyTorch
+# ... it is just far too messy to use a MATLAB application^^ ###
 #########################################################################################
 
 # General neurodocker setup
